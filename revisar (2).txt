@@ -1,0 +1,7 @@
+Cambiar nombres de archivos, 
+cambiar css totalmente, 
+quitar solicitar producto y ver solicitudes,
+cambiar loading sniper, 
+lo de reset paswword esta vinculado con la DB, 
+en el archivo env esta la cuenta de gmail que se debe cambiar. 
+cambiar todo texto e imagen  

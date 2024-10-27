@@ -1,0 +1,41 @@
+/* VerSolicitudes.css */
+
+.informacion-usuarios-content {
+    padding: 20px;
+    overflow-x: hidden;
+    background-color: #f9f9f9; /* Color de fondo */
+    min-height: 100vh; /* Altura mínima */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+    border-radius: 8px; /* Bordes redondeados */
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #fff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.content-wrapper {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+}
+
+.datatable-container {
+    margin-top: 20px;
+}
+
+.loading-message,
+.error-message {
+    font-size: 1.5rem;
+    color: #b30000;
+    margin-top: 50px;
+    text-align: center;
+}

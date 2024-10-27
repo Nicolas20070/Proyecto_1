@@ -1,0 +1,43 @@
+.informacion-usuarios-content {
+    margin-left: 250px; /* Ajusta el margen izquierdo para que no se superponga con la barra lateral */
+    padding: 20px;
+    overflow-x: hidden;
+    background-color: #f9f9f9; /* Color de fondo */
+    min-height: 100vh; /* Altura mínima */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+    border-radius: 8px; /* Bordes redondeados */
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #fff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.content-wrapper {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+}
+
+.datatable-container {
+    margin-top: 20px;
+    width: 100%; /* Asegura que la tabla use todo el ancho disponible */
+    overflow-x: auto; /* Permite el desplazamiento horizontal si es necesario */
+}
+
+.search-input {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 400px; /* Limita el ancho máximo del campo de búsqueda */
+}

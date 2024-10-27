@@ -1,0 +1,306 @@
+/* CSS Global */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    background-image: none;/* Imagen global */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+/* Aquí ignoramos el fondo solo para la clase específica */
+.no-background {
+    background-image: none; /* Elimina la imagen de fondo */
+}
+
+/* Restante del código CSS */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #555; /* Fondo gris */
+    position: fixed;
+    left: 0;
+    top: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+    transition: width 0.3s ease;
+    background-image: none; /* Elimina la imagen de fondo */
+}
+
+/* Los demás estilos permanecen igual */
+
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 30px; /* Espacio debajo del logo */
+}
+
+.logo-container img {
+    width: 100px; /* Tamaño del logo */
+    height: auto;
+}
+
+.sidebar-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.nav-container-3 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar los botones horizontalmente */
+}
+
+.nav-buttons-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar los botones */
+    gap: 15px; /* Espacio entre los botones */
+}
+
+.btn-base {
+    background-color: #b30000; /* Rojo preferido */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 40px; /* Tamaño de botones */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.btn-base:hover {
+    background-color: #8b0000; /* Rojo más oscuro al pasar el mouse */
+}
+
+.btn-back-menu-3,
+.btn-logout-3 {
+    background-color: #b30000;
+    padding: 12px 40px;
+    text-align: center;
+    margin-top: 20px; /* Más espacio entre los botones inferiores */
+}
+
+.btn-back-menu-3 {
+    margin-top: auto; /* Botón "Volver" más abajo */
+}
+
+.btn-logout-3 {
+    margin-top: 10px; /* Botón "Cerrar sesión" más abajo */
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 15px;
+}
+
+.sidebar-menu li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-menu li a:hover,
+.sidebar-menu li a.active {
+    background-color: #8b0000; /* Rojo de contraste */
+    color: white;
+}
+
+.sidebar-menu li a .sidebar-menu-icon {
+    margin-right: 10px;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.home-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+    margin-left: 250px;
+    padding: 20px;
+    overflow-x: hidden;
+    transition: margin-left 0.3s ease;
+}
+
+/* Estilos para la barra de navegación */
+.nav-container-1as {
+    margin-left: 10%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 92%;
+    z-index: 1000;
+}
+
+.nav-buttons-1as {
+    display: flex;
+    gap: 15px;
+}
+
+.logout-container-1as {
+    margin-left: auto;
+}
+
+/* Media Queries para Responsividad */
+@media screen and (max-width: 900px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        margin-left: 200px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .sidebar {
+        width: 150px;
+    }
+
+    .content {
+        margin-left: 150px;
+    }
+
+    .sidebar-title {
+        font-size: 0.8rem;
+    }
+
+    .sidebar-menu li a {
+        font-size: 10px;
+        padding: 8px;
+    }
+
+    .sidebar-menu li a .sidebar-menu-icon {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .sidebar {
+        width: 100px;
+    }
+
+    .content {
+        margin-left: 100px;
+    }
+
+    .sidebar-title {
+        font-size: 0.7rem;
+    }
+
+    .sidebar-menu li a {
+        font-size: 9px;
+        padding: 6px;
+    }
+
+    .sidebar-menu li a .sidebar-menu-icon {
+        font-size: 10px;
+    }
+}
+/* Estilos para los botones del nav */
+.btn-base {
+    padding: 10px 20px;
+    color: white;
+    background-color: #c62828;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s ease;
+    font-weight: 300;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.btn-base:hover {
+    background-color: #b71c1c;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Colores personalizados para los botones */
+.btn-perfil-1as {
+    background-color: #f44336; /* Verde para 'Perfil' */
+}
+
+.btn-perfil-1as:hover {
+    background-color: #f44336; /* Hover verde más oscuro */
+}
+
+.btn-vehiculos-1as {
+    background-color: #f44336; /* Azul para 'Vehículos' */
+}
+
+.btn-vehiculos-1as:hover {
+    background-color: #f44336; /* Hover azul más oscuro */
+}
+
+.btn-servicios-1as {
+    background-color: #f44336; /* Amarillo para 'Servicios' */
+}
+
+.btn-servicios-1as:hover {
+    background-color: #f44336; /* Hover amarillo más oscuro */
+}
+
+.btn-cerrar-sesion-1as {
+    background-color: #f44336; /* Rojo para 'Cerrar Sesión' */
+}
+
+.btn-cerrar-sesion-1as:hover {
+    background-color: #f44336; /* Hover rojo más oscuro */
+}
+
+/* Contenedor de botones */
+.nav-container-1as {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-radius: 15px; /* Bordes redondeados */
+    background-color: #ffffff; /* Fondo blanco para el contenedor */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.nav-buttons-1as {
+    display: flex;
+}
+
+
+.logout-container-1as {
+    display: flex;
+    justify-content: flex-end;
+}
+/* Aquí ignoramos el fondo solo para la clase específica */
+.no-background {
+    background-image: none; /* Elimina la imagen de fondo */
+}
+.client-dashboard-container {
+    background-image: none; /* Elimina la imagen de fondo */
+}
