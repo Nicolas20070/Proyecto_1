@@ -1,118 +1,196 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import FloatingMenuClient from './SlidebarC';
 import DataTable from 'react-data-table-component';
-import '../styles/Vehicles.css'; // Reutilizar los estilos de Vehicles
+import { motion } from 'framer-motion';
+import '../styles/Servicios.css';
+import { FaPlus } from 'react-icons/fa';
 
-const Services = () => {
-    const [services, setServices] = useState([]);
-    const [loadingServices, setLoadingServices] = useState(true);
-    const [errorServices, setErrorServices] = useState(null);
-    const [searchTerm, setSearchTerm] = useState('');
+function Services() {
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        axios.get('http://localhost:2071/api/servicios', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-        .then(response => {
-            setServices(response.data);
-            setLoadingServices(false);
-        })
-        .catch(error => {
-            console.error('Error fetching services:', error);
-            setErrorServices('Error al obtener los servicios.');
-            setLoadingServices(false);
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get("http://localhost:2071/api/servicios", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         });
-    }, []);
+        setServices(response.data);
+      } catch (error) {
+        console.error("Error al obtener los servicios:", error);
+        setError("Error al obtener los servicios.");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    if (loadingServices) {
-        return <div className="loading-message">Cargando servicios...</div>;
-    }
+    fetchServices();
+  }, []);
 
-    if (errorServices) {
-        return <div className="error-message">{errorServices}</div>;
-    }
-
-    const filteredServices = services.filter(service =>
-        service.nombre_empleado.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        service.nombre_cliente.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        service.placa_vehiculo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        service.nombre_servicio.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    const columns = [
-        { name: 'Empleado', selector: row => row.nombre_empleado, sortable: true, wrap: true, width: '150px' },
-        { name: 'Cliente', selector: row => row.nombre_cliente, sortable: true, wrap: true, width: '150px' },
-        { name: 'Placa', selector: row => row.placa_vehiculo, sortable: true, wrap: true, width: '150px' },
-        { name: 'Servicio', selector: row => row.nombre_servicio, sortable: true, wrap: true, width: '150px' },
-        { name: 'Descripción', selector: row => row.descripcion, wrap: true, width: '200px' },
-        { name: 'Fecha', selector: row => new Date(row.fecha_servicio).toLocaleDateString(), sortable: true, wrap: true, width: '150px' },
-        { name: 'Costo', selector: row => row.costo, sortable: true, wrap: true, width: '100px' },
-    ];
-
+  if (loading) {
     return (
-        <div className="informacion-usuarios-content">
-            {/* Campo de búsqueda */}
-            <input
-                type="text"
-                placeholder="Buscar..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="search-input"
-            />
-
-            <div className="data-table-wrapper">
-                <DataTable
-                    title="Información de Servicios"
-                    columns={columns}
-                    data={filteredServices}
-                    pagination
-                    highlightOnHover
-                    striped
-                    noDataComponent="No hay servicios disponibles."
-                    responsive
-                    style={{ marginTop: '10px', fontSize: '0.8rem' }}
-                    customStyles={{
-                        table: {
-                            style: {
-                                fontSize: '0.8rem',
-                                width: '100%',
-                            },
-                        },
-                        head: {
-                            style: {
-                                backgroundColor: '#f2f2f2',
-                                fontWeight: 'bold',
-                                fontSize: '0.9rem',
-                                padding: '10px',
-                                whiteSpace: 'nowrap',
-                                overflow: 'hidden',
-                                textOverflow: 'ellipsis',
-                            },
-                        },
-                        cells: {
-                            style: {
-                                padding: '10px',
-                                fontSize: '0.8rem',
-                                whiteSpace: 'normal',
-                                wordBreak: 'break-word',
-                                fontFamily: 'inherit',
-                            },
-                        },
-                    }}
-                    paginationComponentOptions={{
-                        rowsPerPageText: 'Filas por página',
-                        rangeSeparatorText: 'de',
-                        noRowsPerPage: false,
-                        selectAllRowsItem: true,
-                        selectAllRowsItemText: 'Todos',
-                    }}
-                />
-            </div>
-        </div>
+      <motion.div
+        className="loading-message"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        Cargando...
+      </motion.div>
     );
-};
+  }
+
+  if (error) {
+    return (
+      <motion.div
+        className="error-message"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        {error}
+      </motion.div>
+    );
+  }
+
+  const filteredServices = services.filter(service =>
+    service.nombre_empleado.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    service.nombre_cliente.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    service.placa_vehiculo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    service.nombre_servicio.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    service.descripcion.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    service.costo.toString().includes(searchTerm.toLowerCase())
+  );
+
+  const columns = [
+    {
+      name: 'Encargado',
+      selector: row => row.nombre_empleado,
+      sortable: true,
+      wrap: true,
+      cell: row => <div style={{ padding: '10px', textAlign: 'left' }}>{row.nombre_empleado}</div>,
+    },
+    {
+      name: 'Nombre',
+      selector: row => row.nombre_cliente,
+      sortable: true,
+      wrap: true,
+      cell: row => <div style={{ padding: '10px', textAlign: 'left' }}>{row.nombre_cliente}</div>,
+    },
+    {
+      name: 'Placa',
+      selector: row => row.placa_vehiculo,
+      sortable: true,
+      wrap: true,
+      cell: row => <div style={{ padding: '10px', textAlign: 'left' }}>{row.placa_vehiculo}</div>,
+    },
+    {
+      name: 'Servicio',
+      selector: row => row.nombre_servicio,
+      sortable: true,
+      wrap: true,
+      cell: row => <div style={{ padding: '10px', textAlign: 'left' }}>{row.nombre_servicio}</div>,
+    },
+    {
+      name: 'Descripción',
+      selector: row => row.descripcion,
+      wrap: true,
+      cell: row => <div style={{ padding: '10px', textAlign: 'left' }}>{row.descripcion}</div>,
+    },
+    {
+      name: 'Precio',
+      selector: row => row.costo,
+      sortable: true,
+      wrap: true,
+      cell: row => <div style={{ padding: '10px', textAlign: 'right' }}>{row.costo}</div>,
+    },
+  ];
+
+  return (
+    <div className="servicios-content">
+      <FloatingMenuClient />
+      <motion.div
+        className="servicios-header"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h2>Información de Servicios</h2>
+      </motion.div>
+      <motion.div
+        style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+      >
+        <input
+          type="text"
+          placeholder="Buscar..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+       
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="servicios-table-wrapper"
+      >
+        <DataTable
+          columns={columns}
+          data={filteredServices}
+          pagination
+          highlightOnHover
+          striped
+          noDataComponent="No hay servicios disponibles."
+          responsive
+          customStyles={{
+            table: {
+              style: {
+                marginTop: '20px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                width: '90%',
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                borderRadius: '15px',
+                overflow: 'hidden',
+              },
+            },
+            head: {
+              style: {
+                backgroundColor: '#f2f2f2',
+                fontWeight: 'bold',
+                whiteSpace: 'nowrap',
+                fontSize: '1rem',
+              },
+            },
+            cells: {
+              style: {
+                whiteSpace: 'normal',
+                wordBreak: 'break-word',
+                fontSize: '0.9rem',
+              },
+            },
+          }}
+          paginationComponentOptions={{
+            rowsPerPageText: 'Filas por página',
+            rangeSeparatorText: 'de',
+            noRowsPerPage: false,
+            selectAllRowsItem: true,
+            selectAllRowsItemText: 'Todos',
+          }}
+        />
+      </motion.div>
+    </div>
+  );
+}
 
 export default Services;

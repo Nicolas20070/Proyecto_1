@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Sidebar from './Slidebara';
 import DataTable from 'react-data-table-component';
@@ -101,7 +102,16 @@ function Servicios() {
   return (
     <div className="servicios-content">
       <Sidebar />
+      <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="usuarios-title"
+        >
+          Servicios
+        </motion.h2>
       <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
+        
         <input
           type="text"
           placeholder="Buscar..."
@@ -111,9 +121,9 @@ function Servicios() {
           style={{ marginRight: '10px', padding: '10px', borderRadius: '4px', border: '1px solid #ccc', flexGrow: 1 }}
         />
         <Link to="/agregar-servicio" className="agregar-ser">Agregar</Link>
+        
       </div>
       <DataTable
-        title="Información de Servicios"
         columns={columns}
         data={filteredServicios}
         pagination

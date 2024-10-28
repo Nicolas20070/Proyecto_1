@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAdminVehicles } from "../../services/authService"; // Asegúrate de que esta función esté correctamente implementada
+import { getAdminVehicles } from '../../services/authService';
 import Sidebar from './Slidebara';
 import DataTable from 'react-data-table-component';
-import '../styles/Vehiculos.css'; // Asegúrate de tener un archivo CSS para los estilos
+import { motion } from 'framer-motion';
+import { FaPencilAlt } from 'react-icons/fa';
+import '../styles/Vehiculos.css';
 
 export const API_URL = "http://localhost:2071/api";
 
@@ -34,11 +36,29 @@ function Vehiculos() {
     };
 
     if (loading) {
-        return <div className="loading-message">Cargando...</div>;
+        return (
+            <motion.div
+                className="loading-message"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+            >
+                Cargando...
+            </motion.div>
+        );
     }
 
     if (error) {
-        return <div className="error-message">{error}</div>;
+        return (
+            <motion.div
+                className="error-message"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+            >
+                {error}
+            </motion.div>
+        );
     }
 
     const filteredVehicles = vehicles.filter(vehicle =>
@@ -83,64 +103,93 @@ function Vehiculos() {
         {
             name: 'Acciones',
             cell: row => (
-                <button onClick={() => handleUpdateVehicleUser(row.idvehiculo)}>Actualizar</button>
+                <motion.button
+                    onClick={() => handleUpdateVehicleUser(row.idvehiculo)}
+                    className="edit-button"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                >
+                    <FaPencilAlt />
+                </motion.button>
             ),
+            ignoreRowClick: true,
+            allowOverflow: true,
+            button: true,
         },
     ];
 
     return (
         <div className="vehiculos-content">
             <Sidebar />
-            <input
+            <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="vehiculos-header"
+            >
+                <h2>Información de Vehículos</h2>
+            </motion.div>
+            <motion.input
                 type="text"
                 placeholder="Buscar..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="search-input"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
             />
-            <DataTable
-                title="Información de Vehículos"
-                columns={columns}
-                data={filteredVehicles}
-                pagination
-                highlightOnHover
-                striped
-                noDataComponent="No hay vehículos disponibles."
-                responsive
-                customStyles={{
-                    table: {
-                        style: {
-                            maxWidth: '100%',
-                            fontSize: '0.9rem', // Tamaño de fuente general
+            <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="vehiculos-table-wrapper"
+            >
+                <DataTable
+                    columns={columns}
+                    data={filteredVehicles}
+                    pagination
+                    highlightOnHover
+                    striped
+                    noDataComponent="No hay vehículos disponibles."
+                    responsive
+                    customStyles={{
+                        table: {
+                            style: {
+                                marginTop: '20px',
+                                marginLeft: 'auto',
+                                marginRight: 'auto',
+                                width: '90%',
+                                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                                borderRadius: '10px',
+                                overflow: 'hidden',
+                            },
                         },
-                    },
-                    head: {
-                        style: {
-                            backgroundColor: '#f2f2f2',
-                            fontWeight: 'bold',
-                            fontSize: '1rem',
-                            padding: '10px',
-                            whiteSpace: 'nowrap',
+                        head: {
+                            style: {
+                                backgroundColor: '#f2f2f2',
+                                fontWeight: 'bold',
+                                whiteSpace: 'nowrap',
+                                fontSize: '1rem',
+                            },
                         },
-                    },
-                    cells: {
-                        style: {
-                            padding: '10px',
-                            fontSize: '0.9rem',
-                            whiteSpace: 'normal',
-                            wordBreak: 'break-word',
-                            fontFamily: 'inherit',
+                        cells: {
+                            style: {
+                                whiteSpace: 'normal',
+                                wordBreak: 'break-word',
+                                fontSize: '0.9rem',
+                            },
                         },
-                    },
-                }}
-                paginationComponentOptions={{
-                    rowsPerPageText: 'Filas por página',
-                    rangeSeparatorText: 'de',
-                    noRowsPerPage: false,
-                    selectAllRowsItem: true,
-                    selectAllRowsItemText: 'Todos',
-                }}
-            />
+                    }}
+                    paginationComponentOptions={{
+                        rowsPerPageText: 'Filas por página',
+                        rangeSeparatorText: 'de',
+                        noRowsPerPage: false,
+                        selectAllRowsItem: true,
+                        selectAllRowsItemText: 'Todos',
+                    }}
+                />
+            </motion.div>
         </div>
     );
 }

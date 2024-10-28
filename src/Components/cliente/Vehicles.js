@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import FloatingMenuClient from './SlidebarC';
 import DataTable from 'react-data-table-component';
-import '../styles/Vehicles.css'; // Reutilizar los estilos de UsuariosE
+import { motion } from 'framer-motion';
+import { FaPencilAlt } from 'react-icons/fa';
+import '../styles/Vehiculos.css';
 
 const Vehicles = () => {
     const [vehicles, setVehicles] = useState([]);
@@ -29,15 +32,32 @@ const Vehicles = () => {
         });
     }, []);
 
-    const handleAddVehicle = () => navigate('/add-vehicle');
-    const handleUpdateVehicle = (id) => navigate(`/edit-vehicle/${id}`);
+    const handleUpdateVehicle = (idvehiculo) => navigate(`/edit-vehicle/${idvehiculo}`);
 
     if (loadingVehicles) {
-        return <div className="loading-message">Cargando vehículos...</div>;
+        return (
+            <motion.div
+                className="loading-message"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+            >
+                Cargando vehículos...
+            </motion.div>
+        );
     }
 
     if (errorVehicles) {
-        return <div className="error-message">{errorVehicles}</div>;
+        return (
+            <motion.div
+                className="error-message"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+            >
+                {errorVehicles}
+            </motion.div>
+        );
     }
 
     const filteredVehicles = vehicles.filter(vehicle =>
@@ -84,30 +104,51 @@ const Vehicles = () => {
         {
             name: 'Acciones',
             cell: row => (
-                <button onClick={() => handleUpdateVehicle(row.idvehiculo)} className="update-button">
-                    Actualizar
-                </button>
+                <motion.button
+                    onClick={() => handleUpdateVehicle(row.idvehiculo)}
+                    className="edit-button"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                >
+                    <FaPencilAlt />
+                </motion.button>
             ),
+            ignoreRowClick: true,
+            allowOverflow: true,
+            button: true,
             width: '150px',
         },
     ];
 
     return (
-        <div className="informacion-usuarios-content">
-            <button onClick={handleAddVehicle} className="add-vehicle-button">Agregar Vehículo</button>
-
-            {/* Campo de búsqueda */}
-            <input
+        <div className="vehiculos-content">
+            <FloatingMenuClient />
+            <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="vehiculos-header"
+            >
+                <h2>Mis Vehículos</h2>
+            </motion.div>
+            <motion.input
                 type="text"
                 placeholder="Buscar..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="search-input"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
             />
-
-            <div className="data-table-wrapper">
+            <Link to="/add-vehicle" className="agregar-vehiculo">✚</Link>
+            <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="vehiculos-table-wrapper"
+            >
                 <DataTable
-                    title="Información de Vehículos"
                     columns={columns}
                     data={filteredVehicles}
                     pagination
@@ -115,32 +156,31 @@ const Vehicles = () => {
                     striped
                     noDataComponent="No hay vehículos disponibles."
                     responsive
-                    style={{ marginTop: '10px', fontSize: '0.8rem' }}
                     customStyles={{
                         table: {
                             style: {
-                                fontSize: '0.8rem',
-                                width: '100%',
+                                marginTop: '20px',
+                                marginLeft: 'auto',
+                                marginRight: 'auto',
+                                width: '90%',
+                                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                                borderRadius: '10px',
+                                overflow: 'hidden',
                             },
                         },
                         head: {
                             style: {
                                 backgroundColor: '#f2f2f2',
                                 fontWeight: 'bold',
-                                fontSize: '0.9rem',
-                                padding: '10px',
                                 whiteSpace: 'nowrap',
-                                overflow: 'hidden',
-                                textOverflow: 'ellipsis',
+                                fontSize: '1rem',
                             },
                         },
                         cells: {
                             style: {
-                                padding: '10px',
-                                fontSize: '0.8rem',
                                 whiteSpace: 'normal',
                                 wordBreak: 'break-word',
-                                fontFamily: 'inherit',
+                                fontSize: '0.9rem',
                             },
                         },
                     }}
@@ -152,7 +192,7 @@ const Vehicles = () => {
                         selectAllRowsItemText: 'Todos',
                     }}
                 />
-            </div>
+            </motion.div>
         </div>
     );
 };

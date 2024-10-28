@@ -3,7 +3,9 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Sidebar from './SlidebarE';
 import DataTable from 'react-data-table-component';
+import { motion } from 'framer-motion';
 import '../styles/Servicios.css';
+import { FaPlus } from 'react-icons/fa';
 
 function ServiciosE() {
   const [servicios, setServicios] = useState([]);
@@ -32,11 +34,29 @@ function ServiciosE() {
   }, []);
 
   if (loading) {
-    return <div className="loading-message">Cargando...</div>;
+    return (
+      <motion.div
+        className="loading-message"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        Cargando...
+      </motion.div>
+    );
   }
 
   if (error) {
-    return <div className="error-message">{error}</div>;
+    return (
+      <motion.div
+        className="error-message"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        {error}
+      </motion.div>
+    );
   }
 
   const filteredServicios = servicios.filter(servicio =>
@@ -54,7 +74,6 @@ function ServiciosE() {
       selector: row => row.nombre_empleado,
       sortable: true,
       wrap: true,
-      width: '200px',
       cell: row => <div style={{ padding: '10px', textAlign: 'left' }}>{row.nombre_empleado}</div>,
     },
     {
@@ -62,7 +81,6 @@ function ServiciosE() {
       selector: row => row.nombre_cliente,
       sortable: true,
       wrap: true,
-      width: '200px',
       cell: row => <div style={{ padding: '10px', textAlign: 'left' }}>{row.nombre_cliente}</div>,
     },
     {
@@ -70,7 +88,6 @@ function ServiciosE() {
       selector: row => row.placa_vehiculo,
       sortable: true,
       wrap: true,
-      width: '150px',
       cell: row => <div style={{ padding: '10px', textAlign: 'left' }}>{row.placa_vehiculo}</div>,
     },
     {
@@ -78,14 +95,12 @@ function ServiciosE() {
       selector: row => row.nombre_servicio,
       sortable: true,
       wrap: true,
-      width: '300px',
       cell: row => <div style={{ padding: '10px', textAlign: 'left' }}>{row.nombre_servicio}</div>,
     },
     {
       name: 'Descripción',
       selector: row => row.descripcion,
       wrap: true,
-      width: '500px',
       cell: row => <div style={{ padding: '10px', textAlign: 'left' }}>{row.descripcion}</div>,
     },
     {
@@ -93,7 +108,6 @@ function ServiciosE() {
       selector: row => row.costo,
       sortable: true,
       wrap: true,
-      width: '200px',
       cell: row => <div style={{ padding: '10px', textAlign: 'right' }}>{row.costo}</div>,
     },
   ];
@@ -101,62 +115,85 @@ function ServiciosE() {
   return (
     <div className="servicios-content">
       <Sidebar />
-      <Link to="/agregar-servicioE" className="btn btn-primary mb-3">Agregar Servicio</Link>
-      <input
-        type="text"
-        placeholder="Buscar..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="search-input"
-      />
-      <DataTable
-        title="Información de Servicios"
-        columns={columns}
-        data={filteredServicios}
-        pagination
-        highlightOnHover
-        striped
-        noDataComponent="No hay servicios disponibles."
-        responsive
-        style={{ marginTop: '10px', fontSize: '0.8rem' }}
-        customStyles={{
-          table: {
-            style: {
-              fontSize: '0.8rem',
-              maxWidth: '100%',
+      <motion.div
+        className="servicios-header"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h2>Información de Servicios - Empleado</h2>
+      </motion.div>
+      <motion.div
+        style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+      >
+        <input
+          type="text"
+          placeholder="Buscar..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+        <Link to="/agregar-servicioE" className="agregar-ser">
+          <FaPlus />
+        </Link>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="servicios-table-wrapper"
+      >
+        <DataTable
+          columns={columns}
+          data={filteredServicios}
+          pagination
+          highlightOnHover
+          striped
+          noDataComponent="No hay servicios disponibles."
+          responsive
+          customStyles={{
+            table: {
+              style: {
+                marginTop: '20px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                width: '90%',
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                borderRadius: '15px',
+                overflow: 'hidden',
+              },
             },
-          },
-          head: {
-            style: {
-              backgroundColor: '#f2f2f2',
-              fontWeight: 'bold',
-              fontSize: '0.9rem',
-              padding: '10px',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
+            head: {
+              style: {
+                backgroundColor: '#f2f2f2',
+                fontWeight: 'bold',
+                whiteSpace: 'nowrap',
+                fontSize: '1rem',
+              },
             },
-          },
-          cells: {
-            style: {
-              padding: '10px',
-              fontSize: '0.8rem',
-              whiteSpace: 'normal',
-              wordBreak: 'break-word',
-              fontFamily: 'inherit',
+            cells: {
+              style: {
+                whiteSpace: 'normal',
+                wordBreak: 'break-word',
+                fontSize: '0.9rem',
+              },
             },
-          },
-        }}
-        paginationComponentOptions={{
-          rowsPerPageText: 'Filas por página',
-          rangeSeparatorText: 'de',
-          noRowsPerPage: false,
-          selectAllRowsItem: true,
-          selectAllRowsItemText: 'Todos',
-        }}
-      />
+          }}
+          paginationComponentOptions={{
+            rowsPerPageText: 'Filas por página',
+            rangeSeparatorText: 'de',
+            noRowsPerPage: false,
+            selectAllRowsItem: true,
+            selectAllRowsItemText: 'Todos',
+          }}
+        />
+      </motion.div>
     </div>
   );
 }
 
 export default ServiciosE;
+  

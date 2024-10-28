@@ -1,43 +1,93 @@
-.informacion-usuarios-content {
-    margin-left: 250px; /* Ajusta el margen izquierdo para que no se superponga con la barra lateral */
-    padding: 20px;
-    overflow-x: hidden;
-    background-color: #f9f9f9; /* Color de fondo */
-    min-height: 100vh; /* Altura mínima */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
-    border-radius: 8px; /* Bordes redondeados */
+/* Encapsulado bajo .usuarios-container para evitar impacto global */
+
+.usuarios-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #00179b, #86c0ff); /* Fondo degradado azul */
+    padding: 2rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-.sidebar-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 250px;
-    background-color: #fff;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+.usuarios-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(240, 248, 255, 0.85); /* Azul muy suave con transparencia */
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.content-wrapper {
-    margin-left: 250px;
-    padding: 20px;
-    width: calc(100% - 250px);
+.usuarios-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.datatable-container {
-    margin-top: 20px;
-    width: 100%; /* Asegura que la tabla use todo el ancho disponible */
-    overflow-x: auto; /* Permite el desplazamiento horizontal si es necesario */
+.usuarios-title {
+    text-align: center;
+    color: #007bff; /* Azul vibrante */
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 1.5rem;
 }
 
 .search-input {
     margin-bottom: 20px;
     padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+    border-radius: 8px;
+    border: 1px solid #007bff;
     width: 100%;
-    max-width: 400px; /* Limita el ancho máximo del campo de búsqueda */
+    max-width: 400px;
+    transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #0056b3; /* Azul más oscuro al enfocar */
+    outline: none;
+}
+
+.usuarios-table-wrapper {
+    width: 100%;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.loading-message {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.error-message {
+    color: #ff4d4d; /* Rojo para resaltar los errores */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Centrando el controlador de páginas del DataTable */
+.usuarios-table-wrapper .rdt_Pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }

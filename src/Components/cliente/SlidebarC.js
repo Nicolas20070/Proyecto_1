@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/Slidebara.css';
+import { useNavigate } from 'react-router-dom';
 
-function FloatingMenu() {
+function FloatingMenuClient() {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   const menuItems = [
-    { label: 'Perfil', icon: '👤', onClick: () => window.location.href = '/ProfileA' },
-    { label: 'Usuarios', icon: '👥', onClick: () => window.location.href = '/Usuarios' },
-    { label: 'Vehículos', icon: '🚗', onClick: () => window.location.href = '/Vehiculos' },
-    { label: 'Servicios', icon: '🔧', onClick: () => window.location.href = '/Servicios' },
-    { label: 'Inventario', icon: '📦', onClick: () => window.location.href = '/Inventory' },
-    { label: 'Volver al Menú', icon: '↩️', onClick: () => window.location.href = '/AdminDashboard' },
-    { label: 'Cerrar Sesión', icon: '🚪', onClick: () => { localStorage.removeItem("token"); window.location.href = '/' } },
+    { label: 'Perfil', icon: '👤', onClick: () => navigate('/Profile') },
+    { label: 'Vehículos', icon: '🚗', onClick: () => navigate('/Vehicles') },
+    { label: 'Servicios', icon: '🔧', onClick: () => navigate('/Services') },
+    { label: 'Volver al Menú', icon: '↩️', onClick: () => window.location.href = '/ClientDashboard' },
+    { label: 'Cerrar Sesión', icon: '🚪', onClick: () => { localStorage.removeItem("token"); navigate('/') } },
   ];
 
   return (
@@ -61,4 +61,4 @@ function FloatingMenu() {
   );
 }
 
-export default FloatingMenu;
+export default FloatingMenuClient;

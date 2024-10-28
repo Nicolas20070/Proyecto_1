@@ -1,0 +1,138 @@
+/* EmployeeDashboard.css Encapsulado bajo .employee-dashboard-container para evitar impacto global */
+
+.employee-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #00179b, #86c0ff);
+    padding-top: 50px;
+}
+
+.employee-banner {
+    padding: 30px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #00179b, #86c0ff);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background 1.5s ease;
+    margin: 20px auto;
+    width: 80%;
+}
+
+.employee-banner h1 {
+    font-size: 36px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.employee-banner p {
+    font-size: 20px;
+    color: #f1f1f1;
+}
+
+.employee-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.employee-section {
+    margin-bottom: 40px;
+}
+
+.titulo {
+    color: #00179b;
+    font-weight: bold;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Carousel Styles */
+.employee-carousel .contenido-textos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.employee-carousel .contenido-textos:hover {
+    transform: scale(1.05);
+}
+
+/* Service Card Styles */
+.employee-service-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.employee-service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+.employee-service-card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 5px solid #00179b;
+}
+
+.employee-service-card .hover-serv {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 23, 155, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.employee-service-card:hover .hover-serv {
+    opacity: 1;
+}
+
+/* Footer Styles */
+.employee-footer {
+    background-color: #333;
+    padding: 50px 0;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.employee-footer .footer-section {
+    margin-bottom: 20px;
+}
+
+.employee-footer h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #d33131;
+    border-bottom: 2px solid #d33131;
+    padding-bottom: 5px;
+}
+
+.employee-footer a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.employee-footer a:hover {
+    color: #d33131;
+}

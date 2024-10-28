@@ -1,67 +1,62 @@
-import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import '../styles/Sidebara.css';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import '../styles/Slidebara.css';
 
-const Sidebar = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
+function SidebarE() {
+  const [isOpen, setIsOpen] = useState(false);
 
-    const handlePerfilClick = () => {
-        console.log("Perfil clickeado");
-        navigate('/ProfileE'); // Cambia la ruta según sea necesario
-    };
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
-    const handleVehiculosClick = () => {
-        console.log("Vehículos clickeado");
-        navigate('/VehiculosE'); // Cambia la ruta según sea necesario
-    };
+  const menuItems = [
+    { label: 'Perfil', icon: '👤', onClick: () => window.location.href = '/ProfileE' },
+    { label: 'Vehículos', icon: '🚗', onClick: () => window.location.href = '/VehiculosE' },
+    { label: 'Servicios', icon: '🔧', onClick: () => window.location.href = '/ServiciosE' },
+    { label: 'Inventario', icon: '📦', onClick: () => window.location.href = '/InventoryE' },
+    { label: 'Cerrar Sesión', icon: '🚪', onClick: () => { localStorage.removeItem("token"); window.location.href = '/' } },
+  ];
 
-    const handleServiciosClick = () => {
-        console.log("Servicios clickeado");
-        navigate('/ServiciosE'); // Cambia la ruta según sea necesario
-    };
+  return (
+    <div className="floating-menu-container">
+      <button className="floating-button" onClick={toggleMenu}>
+        {isOpen ? '✖' : '✚'}
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <div className="menu-items">
+            {menuItems.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ delay: index * 0.1 }}
+                className="menu-item-container"
+              >
+                <motion.button
+                  className="menu-item"
+                  onClick={item.onClick}
+                  onMouseEnter={(e) => e.currentTarget.querySelector('.menu-label').style.opacity = 1}
+                  onMouseLeave={(e) => e.currentTarget.querySelector('.menu-label').style.opacity = 0}
+                >
+                  <span className="menu-icon">{item.icon}</span>
+                  <motion.span
+                    className="menu-label"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {item.label}
+                  </motion.span>
+                </motion.button>
+              </motion.div>
+            ))}
+          </div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
-    const handleProductosClick = () => {
-        console.log("Inventario clickeado");
-        navigate('/InventoryE'); // Cambia la ruta según sea necesario
-    };
-
-    const handleUsuariosClick = () => {
-        console.log("Usuarios clickeado");
-        navigate('/UsuariosE'); // Cambia la ruta según sea necesario
-    };
-
-    const handleSolicitudesClick = () => {
-        console.log("Solicitudes clickeado");
-        navigate('/VerSolicitudesE'); // Cambia la ruta según sea necesario
-    };
-
-    const handleLogout = () => {
-        console.log("Cerrando sesión...");
-        localStorage.removeItem("token"); // Elimina el token del almacenamiento local
-        navigate('/'); // Redirige al menú principal de admin
-    };
-
-
-    return (
-        <div className="sidebar">
-            <h3 className="sidebar-title">Menú Empleado</h3>
-            <nav>
-                <div className='nav-container-3'>
-                    <div className='nav-buttons-3'>
-                        <button className='btn-perfil-3 btn-base' onClick={handlePerfilClick}>Perfil</button>
-                        <button className='btn-Usuarios-3 btn-base' onClick={handleUsuariosClick}>Usuarios</button>
-                        <button className='btn-vehiculos-3 btn-base' onClick={handleVehiculosClick}>Vehículos</button>
-                        <button className='btn-servicios-3 btn-base' onClick={handleServiciosClick}>Servicios</button>
-                        <button className='btn-inventario-3 btn-base' onClick={handleProductosClick}>Inventario</button>
-                        <button className='btn-solicitudes-3 btn-base' onClick={handleSolicitudesClick}>Solicitudes</button>
-                        <button className='btn-logout-3 btn-base' onClick={handleLogout}>Cerrar Sesión</button>
-
-                    </div>
-                </div>
-            </nav>
-        </div>
-    );
-};
-
-export default Sidebar;
+export default SidebarE;

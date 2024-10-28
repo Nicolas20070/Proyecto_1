@@ -1,0 +1,62 @@
+/* Header.css */
+
+.header-container .header-menubar {
+    background-color: #ffffff;
+    border: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.header-container .logo {
+    margin-left: auto;
+}
+
+.header-container .menu-item-custom {
+    color: #4e4e4e;
+    font-weight: bold;
+    font-size: 1em;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.header-container .menu-item-custom:hover {
+    color: #333333;
+}
+
+.header-container .menu-item-custom2-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-container .menu-item-custom2 {
+    background-color: #4a90e2;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    display: flex;
+    gap: 5px;
+    transition: background-color 0.3s;
+}
+
+.header-container .menu-item-custom2:hover {
+    background-color: #3560bd;
+}
+
+.header-container .p-menubar-root-list > li > .p-menuitem-link {
+    color: #4e4e4e;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.header-container .p-menubar-root-list > li > .p-menuitem-link:hover {
+    color: #333333;
+}

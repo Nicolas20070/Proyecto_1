@@ -3,7 +3,6 @@ import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoadingSpinner from './Components/LoadingSpinner'; // Importa el componente de carga
 
-/* PAGINAS NORMALES */
 import Dashboard from './Components/Dashboard';
 import AdminDashboard from './Components/AdminDashboard';
 import ClientDashboard from './Components/ClientDashboard';
@@ -15,7 +14,6 @@ import Terminos from './Components/Terminos';
 import ForgotPassword from './Components/ForgotPassword'; // Importa el componente de recuperación de contraseña
 import ResetPassword from './Components/ResetPassword'; // Importa el componente de restablecimiento de contraseña
 
-/* PAGINAS ADMIN */
 import UpdateServices from './Components/admin/UpdateServices'; 
 import UpdateVehicleUser from './Components/admin/UpdateVehicleUser'; 
 import InfoCliente from './Components/admin/InfoCliente'; 
@@ -31,7 +29,6 @@ import Servicios from './Components/admin/Servicios';
 import AgregarServicio from './Components/admin/AgregarServicio'; 
 import VerSolicitudes from './Components/VerSolicitudes'; // Importa el componente VerSolicitudes
 
-/* PAGINAS EMPLEADO */
 import EditProfileE from './Components/empleado/EditProfileE';
 import ProfileE from './Components/empleado/ProfileE'; 
 import UsuariosE from './Components/empleado/UsuariosE'; 
@@ -41,7 +38,6 @@ import ServiciosE from './Components/empleado/ServiciosE';
 import AgregarServicioE from './Components/empleado/AgregarServicioE'; 
 import VerSolicitudesE from './Components/empleado/VerSolicitudesE'; // Importa el componente VerSolicitudes
 
-/* PAGINAS CLIENTE */
 import Profile from './Components/cliente/Profile';
 import Vehicles from './Components/cliente/Vehicles';
 import Inventario from './Components/cliente/Inventario'; 

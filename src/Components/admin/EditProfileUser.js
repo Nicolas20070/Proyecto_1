@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getUserById, updateUser } from '../../services/authService';
 import Modal from '../cliente/ModalCliente'; // Import the modal
+import { motion } from 'framer-motion';
+import Sidebar from '../admin/Slidebara';
+import '../styles/EditUs.css';
 
 function EditProfileUser() {
     const { id } = useParams();
@@ -113,7 +116,7 @@ function EditProfileUser() {
             address: `${formData.addressType} ${formData.addressDetail}`, // Combinamos tipo y detalle de dirección
         })
             .then(() => {
-                navigate('/AdminDashboard'); // Redirigir al dashboard después de la actualización
+                navigate('/Usuarios'); // Redirigir al dashboard después de la actualización
             })
             .catch(error => {
                 setModalMessage('Error al actualizar el perfil');
@@ -121,85 +124,127 @@ function EditProfileUser() {
             });
     };
 
-    if (loading) return <div>Cargando...</div>;
+    if (loading) return (
+        <motion.div
+            className="loading-message"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+        >
+            Cargando...
+        </motion.div>
+    );
     
     return (
-        <div className="edit-profile-user-content">
-            <h2>Editar Perfil del Usuario</h2>
-            {user && (
-                <form onSubmit={handleSubmit} className="profile-form">
-                    <div className="form-row">
-                        <div className="form-group">
-                            <label htmlFor="name">Nombre:</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                maxLength={20} // Limite de caracteres
-                            />
+        <div className="edit-profile-user-container">
+            <Sidebar />
+            <motion.div
+                className="edit-profile-user-content"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+            >
+                <motion.h2
+                    className="usuarios-title"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    Editar Perfil del Usuario
+                </motion.h2>
+                {user && (
+                    <motion.form
+                        onSubmit={handleSubmit}
+                        className="profile-form"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <div className="form-row">
+                            <div className="form-group">
+                                <label htmlFor="name" className="form-label">Nombre:</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    maxLength={20}
+                                    className="form-input"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="surname" className="form-label">Apellido:</label>
+                                <input
+                                    type="text"
+                                    id="surname"
+                                    name="surname"
+                                    value={formData.surname}
+                                    onChange={handleChange}
+                                    maxLength={20}
+                                    className="form-input"
+                                />
+                            </div>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="surname">Apellido:</label>
-                            <input
-                                type="text"
-                                id="surname"
-                                name="surname"
-                                value={formData.surname}
-                                onChange={handleChange}
-                                maxLength={20} // Limite de caracteres
-                            />
+                        <div className="form-row">
+                            <div className="form-group">
+                                <label htmlFor="addressType" className="form-label">Tipo de Dirección:</label>
+                                <select
+                                    id="addressType"
+                                    name="addressType"
+                                    value={formData.addressType}
+                                    onChange={handleChange}
+                                    required
+                                    className="form-select"
+                                >
+                                    <option value="">Selecciona un tipo de dirección</option>
+                                    <option value="Calle">Calle</option>
+                                    <option value="Avenida">Avenida</option>
+                                    <option value="Carrera">Carrera</option>
+                                    <option value="Diagonal">Diagonal</option>
+                                    <option value="Transversal">Transversal</option>
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="addressDetail" className="form-label">Detalle de Dirección:</label>
+                                <input
+                                    type="text"
+                                    id="addressDetail"
+                                    name="addressDetail"
+                                    value={formData.addressDetail}
+                                    onChange={handleChange}
+                                    placeholder="Ej. 123, Ciudad"
+                                    required
+                                    className="form-input"
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <div className="form-row">
-                        <div className="form-group">
-                            <label htmlFor="addressType">Tipo de Dirección:</label>
-                            <select
-                                id="addressType"
-                                name="addressType"
-                                value={formData.addressType}
-                                onChange={handleChange}
-                                required
-                            >
-                                <option value="">Selecciona un tipo de dirección</option>
-                                <option value="Calle">Calle</option>
-                                <option value="Avenida">Avenida</option>
-                                <option value="Carrera">Carrera</option>
-                                <option value="Diagonal">Diagonal</option>
-                                <option value="Transversal">Transversal</option>
-                            </select>
+                        <div className="form-row">
+                            <div className="form-group">
+                                <label htmlFor="phone" className="form-label">Teléfono:</label>
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    required
+                                    className="form-input"
+                                />
+                            </div>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="addressDetail">Detalle de Dirección:</label>
-                            <input
-                                type="text"
-                                id="addressDetail"
-                                name="addressDetail"
-                                value={formData.addressDetail}
-                                onChange={handleChange}
-                                placeholder="Ej. 123, Ciudad"
-                                required
-                            />
-                        </div>
-                    </div>
-                    <div className="form-row">
-                        <div className="form-group">
-                            <label htmlFor="phone">Teléfono:</label>
-                            <input
-                                type="tel"
-                                id="phone"
-                                name="phone"
-                                value={formData.phone}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-                    </div>
-                    <button type="submit">Guardar Cambios</button>
-                </form>
-            )}
-            <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} message={modalMessage} />
+                        <motion.button
+                            type="submit"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="form-button"
+                        >
+                            Guardar Cambios
+                        </motion.button>
+                    </motion.form>
+                )}
+                <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} message={modalMessage} />
+            </motion.div>
         </div>
     );
 }

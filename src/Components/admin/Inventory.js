@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import axios from 'axios';
 import DataTable from 'react-data-table-component';
 import Sidebar from './Slidebara';
+import { FaPencilAlt } from 'react-icons/fa';
 import '../styles/Inventory.css'; // Asegúrate de tener un archivo CSS para los estilos
 
 function Inventario() {
@@ -10,6 +13,12 @@ function Inventario() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
+
+  
+  const handleEditProfile = (userId) => {
+    navigate(`/edit-inventory/${userId}`);
+  };
 
   useEffect(() => {
     const fetchInventario = async () => {
@@ -52,53 +61,67 @@ function Inventario() {
       selector: row => row.nombre,
       sortable: true,
       wrap: true,
-      width: '200px', // Aumenta el ancho de la columna
+      width: '200px',
     },
     {
       name: 'Descripción',
       selector: row => row.descripcion,
       sortable: true,
       wrap: true,
-      width: '400px', // Aumenta el ancho de la columna
+      width: '400px',
     },
     {
       name: 'Cantidad',
       selector: row => row.cantidad_en_stock,
       sortable: true,
       wrap: true,
-      width: '200px', // Aumenta el ancho de la columna
+      width: '200px',
     },
     {
       name: 'Precio',
       selector: row => row.precio_compra,
       sortable: true,
       wrap: true,
-      width: '200px', // Aumenta el ancho de la columna
+      width: '200px',
     },
     {
-      name: 'Acciones',
+      name: '',
       cell: row => (
-        <Link to={`/edit-inventory/${row.id}`} className="btn btn-warning">Actualizar</Link>
+        <button onClick={() => handleEditProfile(row.id)} className="edit-button">
+          <FaPencilAlt />
+        </button>
       ),
+      ignoreRowClick: true,
+      allowOverflow: true,
+      button: true,
       width: '150px',
     },
   ];
 
   return (
-    <div className="inventario-content">
+    <div className="usuarios-container">
       <Sidebar />
-      <div className="header-content">
-        <input
+      <div className="usuarios-content">
+      <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="usuarios-title"
+        >
+          Información de Inventario
+        </motion.h2>
+      <motion.input
           type="text"
           placeholder="Buscar..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="search-input"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
         />
-        <Link to="/add-inventory" className="agregar-ser">Agregar Nuevo Producto</Link>
-      </div>
+      <Link to="/add-inventory" className="agregar-ser">✚</Link>
       <DataTable
-        title="Información de Inventario"
         columns={columns}
         data={filteredInventario}
         pagination
@@ -143,6 +166,7 @@ function Inventario() {
           selectAllRowsItemText: 'Todos',
         }}
       />
+    </div>
     </div>
   );
 }
