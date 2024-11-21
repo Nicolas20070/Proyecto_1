@@ -14,7 +14,9 @@ import Terminos from './Components/Terminos';
 import ForgotPassword from './Components/ForgotPassword'; // Importa el componente de recuperación de contraseña
 import ResetPassword from './Components/ResetPassword'; // Importa el componente de restablecimiento de contraseña
 
+
 import UpdateServices from './Components/admin/UpdateServices'; 
+import Citas from './Components/admin/CitasAdmin';
 import UpdateVehicleUser from './Components/admin/UpdateVehicleUser'; 
 import InfoCliente from './Components/admin/InfoCliente'; 
 import EditProfileUser from './Components/admin/EditProfileUser'; 
@@ -119,6 +121,7 @@ function App() {
                 <Route path="/ProfileA" element={<PrivateRoute element={<ProfileA />} userRole={userRole} requiredRole={3} />} />
                 <Route path="/Usuarios" element={<PrivateRoute element={<Usuarios />} userRole={userRole} requiredRole={3} />} />
                 <Route path="/Inventory" element={<PrivateRoute element={<Inventory />} userRole={userRole} requiredRole={3} />} />
+                <Route path="/CitasA" element={<PrivateRoute element={<Citas />} userRole={userRole} requiredRole={3} />} />
                 <Route path="/Vehiculos" element={<PrivateRoute element={<Vehiculos />} userRole={userRole} requiredRole={3} />} />
                 <Route path="/Servicios" element={<PrivateRoute element={<Servicios />} userRole={userRole} requiredRole={3} />} />
                 <Route path="/agregar-servicio" element={<PrivateRoute element={<AgregarServicio />} userRole={userRole} requiredRole={3} />} />

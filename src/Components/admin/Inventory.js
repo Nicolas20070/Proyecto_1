@@ -6,7 +6,7 @@ import axios from 'axios';
 import DataTable from 'react-data-table-component';
 import Sidebar from './Slidebara';
 import { FaPencilAlt } from 'react-icons/fa';
-import '../styles/Inventory.css'; // Asegúrate de tener un archivo CSS para los estilos
+import '../styles/Usuarios.css'; // Asegúrate de tener un archivo CSS para los estilos
 
 function Inventario() {
   const [inventario, setInventario] = useState([]);

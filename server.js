@@ -16,8 +16,8 @@ const port = process.env.PORT || 2071;
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '1029280764.',
-  database: 'laservitk',
+  password: '',
+  database: 'mastercenter',
   port: 3306
 });
 
@@ -175,6 +175,8 @@ const authenticateToken = (req, res, next) => {
     next();
   });
 };
+
+
 
 
 // ===============================================================
@@ -814,4 +816,6 @@ app.get('/api/productos/:id', authenticateToken, (req, res) => {
 
     res.status(200).json(results[0]);
   });
+
+
 });

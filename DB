@@ -1,6 +1,6 @@
--- drop database laservitk
-CREATE DATABASE IF NOT EXISTS laservitk;
-USE laservitk;
+drop database mastercenter;
+CREATE DATABASE IF NOT EXISTS mastercenter;
+USE mastercenter;
 
 -- Crear la tabla rol
 CREATE TABLE IF NOT EXISTS rol (
@@ -92,9 +92,9 @@ INSERT INTO users (email, password, name, surname, address, phone, rol_id) VALUE
 
 -- Insertar Empleados
 INSERT INTO users (email, password, name, surname, address, phone, rol_id) VALUES
-('KevinEmpleado@gmail.com', '$2a$10$Tv/HrpystnuFgo9zuDQkTefkmwJ08M6Bc5tcwHYqefxasGl/bi5wi', 'Kevin', 'Paredes', 'Calle 22 bis a sur 54', '3195557618', 1),
-('MichelEmpleado@gmail.com', '$2a$10$lluJuPsD.ozZfa8x2U3A4e3wgN3c8pD32ROJh88YmviqixjVZkFty', 'Michel', 'Ballen', 'Avenida #45', '3107645089', 1),
-('EricEmpleado@gmail.com', '$2a$10$IGl7uX9lgKHcQzPz2gKFN.HJhFun6DUVFNev9sxghwF92pbZpFeuS', 'Eric', 'Molano', 'Transversal 12', '3125546488', 1);
+('NicolasEmpleado@gmail.com', '$2a$10$Tv/HrpystnuFgo9zuDQkTefkmwJ08M6Bc5tcwHYqefxasGl/bi5wi', 'Nicolas', 'Oviedo', 'Calle 22 bis a sur 54', '3195557618', 1),
+('JhoanEmpleado@gmail.com', '$2a$10$lluJuPsD.ozZfa8x2U3A4e3wgN3c8pD32ROJh88YmviqixjVZkFty', 'Jhoan', 'Hernandez', 'Avenida #45', '3107645089', 1),
+('JuanEmpleado@gmail.com', '$2a$10$IGl7uX9lgKHcQzPz2gKFN.HJhFun6DUVFNev9sxghwF92pbZpFeuS', 'Juan', 'mendez', 'Transversal 12', '3125546488', 1);
 
 
 -- Insertar productos iniciales
@@ -148,3 +148,33 @@ VALUES (
 
 
 
+
+
+CREATE TABLE citas (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_cliente INT,
+  id_empleado INT,
+  fecha_hora DATETIME,
+  estado ENUM('Pendiente', 'Confirmada', 'Cancelada', 'Reprogramada'),
+  motivo VARCHAR(255),
+  FOREIGN KEY (id_cliente) REFERENCES users(id),
+  FOREIGN KEY (id_empleado) REFERENCES users(id)
+);
+
+CREATE TABLE cambios_cita (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_cita INT,
+  fecha_hora_anterior DATETIME,
+  fecha_hora_nueva DATETIME,
+  justificacion TEXT,
+  fecha_cambio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (id_cita) REFERENCES citas(id)
+);
+
+CREATE TABLE cancelaciones_cita (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_cita INT,
+  justificacion TEXT,
+  fecha_cancelacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (id_cita) REFERENCES citas(id)
+);
