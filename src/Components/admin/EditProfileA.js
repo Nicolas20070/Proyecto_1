@@ -116,7 +116,7 @@ const EditProfileA = () => {
                 },
             });
             console.log('Perfil actualizado exitosamente:', response.data);
-            navigate('/AdminDashboard'); // Redirect to admin dashboard or desired page
+            navigate('/ProfileA'); // Redirect to admin dashboard or desired page
         } catch (error) {
             console.error('Error al actualizar perfil:', error);
             setModalMessage('Error al actualizar perfil');

@@ -131,3 +131,11 @@
     background-color: #ffffff;
     color: #004080;
 }
+
+.error-message {
+    color: red;
+}
+
+.success-message {
+    color: green;
+}

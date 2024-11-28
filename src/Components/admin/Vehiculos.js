@@ -5,7 +5,7 @@ import Sidebar from './Slidebara';
 import DataTable from 'react-data-table-component';
 import { motion } from 'framer-motion';
 import { FaPencilAlt } from 'react-icons/fa';
-import '../styles/Vehiculos.css';
+import '../styles/Usuarios.css';
 
 export const API_URL = "http://localhost:2071/api";
 

@@ -16,7 +16,6 @@ function FloatingMenu() {
     { label: 'Servicios', icon: '🔧', onClick: () => window.location.href = '/Servicios' },
     { label: 'Inventario', icon: '📦', onClick: () => window.location.href = '/Inventory' },
     { label: 'Volver al Menú', icon: '↩️', onClick: () => window.location.href = '/AdminDashboard' },
-    { label: 'Citas', icon: '📅', onClick: () => window.location.href = '/CitasA' },
     { label: 'Cerrar Sesión', icon: '🚪', onClick: () => { localStorage.removeItem("token"); window.location.href = '/' } },
   ];
 

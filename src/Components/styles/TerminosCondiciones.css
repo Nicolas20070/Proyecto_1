@@ -1,0 +1,103 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+  }
+  
+  .terms-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-top: 6px solid #004aad; /* Azul para destacar */
+  }
+  
+  .terms-container h1 {
+    color: #004aad;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .terms-container h2 {
+    color: #d90429; /* Rojo para secciones */
+    font-size: 1.8rem;
+    margin-top: 20px;
+    border-left: 5px solid #004aad;
+    padding-left: 10px;
+  }
+  
+  .terms-container p {
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+  
+  .terms-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .terms-container ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+  
+  .terms-container ul li::before {
+    content: '\2022';
+    color: #004aad;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  
+  .terms-container a {
+    color: #004aad;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .terms-container a:hover {
+    color: #d90429;
+    text-decoration: underline;
+  }
+  
+  .taller-name {
+    font-weight: bold;
+    color: #004aad;
+  }
+  
+  address {
+    font-style: normal;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .terms-container {
+      padding: 15px;
+    }
+  
+    .terms-container h1 {
+      font-size: 2rem;
+    }
+  
+    .terms-container h2 {
+      font-size: 1.5rem;
+    }
+  
+    .terms-container p {
+      font-size: 0.9rem;
+    }
+  }
+  

@@ -21,8 +21,14 @@ const vehicleData = {
     }
 };
 
-const colors = ['Rojo', 'Azul', 'Verde', 'Negro', 'Blanco'];
-
+const colors = [
+    'Rojo', 'Azul', 'Verde', 'Negro', 'Blanco', 'Gris', 'Amarillo',
+    'Naranja', 'Rosa', 'Violeta', 'Marrón', 'Turquesa', 'Beige',
+    'Dorado', 'Plateado', 'Cyan', 'Magenta', 'Lavanda', 'Oliva',
+    'Verde claro', 'Verde oscuro', 'Rojo claro', 'Rojo oscuro',
+    'Azul claro', 'Azul oscuro', 'Gris claro', 'Gris oscuro',
+    'Marfil', 'Coral', 'Terracota', 'Mostaza', 'Fucsia'
+];
 const EditVehicle = () => {
     const { id } = useParams();
     const [vehicle, setVehicle] = useState({ marca: '', modelo: '', año: '', color: '', placa: '' });

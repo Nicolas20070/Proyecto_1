@@ -1,46 +1,78 @@
 import React from 'react';
-import '../Components/styles/TerminosCondiciones.css'; // Asegúrate de que este archivo CSS esté importado
+import '../Components/styles/TerminosCondiciones.css';
 
 const TerminosCondiciones = () => {
   return (
     <div className="terms-container">
       <h1>Términos y Condiciones</h1>
       <p>
-        Bienvenido a <span className="taller-name">LA ServitK</span>. Al utilizar nuestro sitio web y servicios, aceptas los siguientes términos y condiciones:
+        Bienvenido a <span className="taller-name">MasterCenter</span>. Al utilizar nuestro sitio web y servicios, aceptas los siguientes términos y condiciones:
       </p>
       <h2>1. Introducción</h2>
       <p>
-        Estos Términos y Condiciones rigen el uso de los servicios proporcionados por <span className="taller-name">LA ServtiK</span>, incluyendo cualquier sitio web, aplicaciones y otros servicios relacionados. Al acceder a nuestros servicios, aceptas cumplir con estos términos.
+        Estos Términos y Condiciones rigen el uso de los servicios proporcionados por <span className="taller-name">MasterCenter</span>,
+        incluyendo cualquier sitio web, aplicaciones y otros servicios relacionados. Al acceder a nuestros servicios, aceptas cumplir con estos términos.
       </p>
-      <h2>2. Servicios</h2>
+      <h2>2. Servicios Ofrecidos</h2>
       <p>
-        <span className="taller-name">LA ServitK</span> ofrece servicios de mecánica automotriz que incluyen reparaciones, mantenimiento y asesoramiento. Nos reservamos el derecho de modificar o cancelar cualquier servicio sin previo aviso.
+        <span className="taller-name">MasterCenter</span> es un taller automotriz especializado en BMW y Mini Cooper. Ofrecemos:
+        <ul>
+          <li>Mantenimiento preventivo y correctivo.</li>
+          <li>Reparaciones mecánicas y electrónicas especializadas.</li>
+          <li>Diagnósticos avanzados con tecnología de última generación.</li>
+          <li>Asesoramiento técnico personalizado.</li>
+          <li>Venta de repuestos originales y certificados.</li>
+        </ul>
+        Nos reservamos el derecho de modificar o cancelar cualquier servicio sin previo aviso.
       </p>
-      <h2>3. Responsabilidades del Usuario</h2>
+      <h2>3. Responsabilidades del Cliente</h2>
       <p>
-        Eres responsable de proporcionar información precisa y completa al utilizar nuestros servicios. Debes cumplir con todas las leyes aplicables y no utilizar nuestros servicios para fines ilegales.
+        Como cliente, aceptas proporcionar información precisa y veraz sobre tu vehículo. También te comprometes a:
+        <ul>
+          <li>Respetar los plazos establecidos para citas y recogida del vehículo.</li>
+          <li>No utilizar nuestros servicios para fines ilícitos.</li>
+          <li>Realizar los pagos correspondientes de manera oportuna.</li>
+        </ul>
       </p>
-      <h2>4. Propiedad Intelectual</h2>
+      <h2>4. Garantías</h2>
       <p>
-        Todos los derechos de propiedad intelectual relacionados con el contenido del sitio web de <span className="taller-name">LA ServitK</span> son propiedad de <span className="taller-name">LA ServitK</span>. No puedes copiar, distribuir o utilizar dicho contenido sin nuestro permiso.
+        Garantizamos la calidad de los servicios y repuestos proporcionados. Cualquier reclamación debe realizarse dentro de los 30 días posteriores al servicio.
+        Las garantías no cubren daños ocasionados por mal uso del vehículo o intervención de terceros.
       </p>
-      <h2>5. Limitación de Responsabilidad</h2>
+      <h2>5. Propiedad Intelectual</h2>
       <p>
-        <span className="taller-name">LA ServitK</span> no será responsable de ningún daño o pérdida que resulte del uso de nuestros servicios, excepto en la medida en que la ley lo exija. No garantizamos la exactitud o integridad de la información proporcionada en nuestro sitio web.
+        Todo el contenido, marcas y logos presentes en nuestro sitio web son propiedad de <span className="taller-name">MasterCenter</span> y están protegidos
+        por las leyes de propiedad intelectual. No está permitido reproducir, distribuir ni modificar este contenido sin autorización previa.
       </p>
-      <h2>6. Modificaciones</h2>
+      <h2>6. Política de Privacidad</h2>
       <p>
-        Podemos actualizar estos Términos y Condiciones en cualquier momento. Te notificaremos sobre cualquier cambio importante y se considerará que has aceptado las nuevas condiciones si continúas utilizando nuestros servicios.
+        Nos comprometemos a proteger tu información personal. Consulta nuestra <a href="/politica-de-privacidad">Política de Privacidad</a> para más detalles
+        sobre cómo manejamos tus datos.
       </p>
-      <h2>7. Contacto</h2>
+      <h2>7. Modificaciones de los Términos</h2>
       <p>
-        Si tienes preguntas sobre estos Términos y Condiciones, puedes contactarnos en:
+        Nos reservamos el derecho de actualizar estos Términos y Condiciones en cualquier momento. Las modificaciones serán notificadas mediante nuestro sitio web.
+        El uso continuo de nuestros servicios implica la aceptación de los cambios.
+      </p>
+      <h2>8. Limitaciones de Responsabilidad</h2>
+      <p>
+        <span className="taller-name">MasterCenter</span> no será responsable por daños indirectos, incidentales o consecuentes que resulten del uso de nuestros servicios,
+        excepto cuando la ley lo exija.
+      </p>
+      <h2>9. Resolución de Disputas</h2>
+      <p>
+        Cualquier conflicto relacionado con nuestros servicios será resuelto mediante un proceso de mediación. Si no se llega a un acuerdo, las partes
+        podrán recurrir a la jurisdicción ordinaria en Bogotá, Colombia.
+      </p>
+      <h2>10. Contacto</h2>
+      <p>
+        Si tienes preguntas o inquietudes, contáctanos:
       </p>
       <address>
-        <span className="taller-name">LA ServitK</span> <br />
-        [Fontibon Calle 12 #32] <br />
-        Teléfono: [3203525619] <br />
-        Correo Electrónico: [laservitk@gmail.com]
+        <span className="taller-name">MasterCenter</span> <br />
+        Carrera 45 #123-45, Bogotá, Colombia <br />
+        Teléfono: +57 320 123 4567 <br />
+        Correo Electrónico: contacto@mastercenter.co
       </address>
     </div>
   );

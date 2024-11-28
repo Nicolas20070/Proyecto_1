@@ -150,6 +150,7 @@ export const addInventory = (inventoryData) => {
     });
 };
 
+
 // ===============================================================
 // Componente Actualizar en inventario
 // ===============================================================
@@ -358,3 +359,4 @@ export const resetPassword = async (token, password) => {
         throw new Error('Error al restablecer la contraseña.');
     }
 };
+

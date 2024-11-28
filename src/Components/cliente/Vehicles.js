@@ -5,7 +5,7 @@ import FloatingMenuClient from './SlidebarC';
 import DataTable from 'react-data-table-component';
 import { motion } from 'framer-motion';
 import { FaPencilAlt } from 'react-icons/fa';
-import '../styles/Vehiculos.css';
+import '../styles/Usuarios.css';
 
 const Vehicles = () => {
     const [vehicles, setVehicles] = useState([]);
@@ -121,16 +121,17 @@ const Vehicles = () => {
     ];
 
     return (
-        <div className="vehiculos-content">
+        <div className="usuarios-container">
             <FloatingMenuClient />
-            <motion.div
+            <div className="usuarios-content">
+            <motion.h2
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="vehiculos-header"
+                className="usuarios-title"
             >
-                <h2>Mis Vehículos</h2>
-            </motion.div>
+                Mis Vehículos
+            </motion.h2>
             <motion.input
                 type="text"
                 placeholder="Buscar..."
@@ -141,13 +142,7 @@ const Vehicles = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
             />
-            <Link to="/add-vehicle" className="agregar-vehiculo">✚</Link>
-            <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="vehiculos-table-wrapper"
-            >
+                <Link to="/add-vehicle" className="agregar-ser">✚</Link>
                 <DataTable
                     columns={columns}
                     data={filteredVehicles}
@@ -182,7 +177,7 @@ const Vehicles = () => {
                                 wordBreak: 'break-word',
                                 fontSize: '0.9rem',
                             },
-                        },
+                        },  
                     }}
                     paginationComponentOptions={{
                         rowsPerPageText: 'Filas por página',
@@ -192,7 +187,7 @@ const Vehicles = () => {
                         selectAllRowsItemText: 'Todos',
                     }}
                 />
-            </motion.div>
+        </div>
         </div>
     );
 };

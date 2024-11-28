@@ -180,7 +180,7 @@ const authenticateToken = (req, res, next) => {
 
 
 // ===============================================================
-// Componente Octener usuarios
+// Componente Obtener usuarios
 // ===============================================================
 app.get('/api/user/data', authenticateToken, (req, res) => {
   const sql = 'SELECT * FROM users WHERE id = ?';
