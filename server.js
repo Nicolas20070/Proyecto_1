@@ -7,17 +7,23 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const config = require('./config');
 
 const app = express();
 const port = process.env.PORT || 2071;
 
-const db = mysql.createConnection({
+// Configuración de Sequelize (Base de datos)
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
   host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT
+  port: process.env.DB_PORT || 3306,
+  dialect: 'mysql',
+  logging: false, // Para evitar mostrar los logs de SQL
+  pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+  },
 });
 
 db.connect((err) => {
