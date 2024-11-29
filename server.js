@@ -4,26 +4,22 @@ const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
+const { Sequelize } = require('sequelize');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('./config');
 
 const app = express();
-const port = process.env.PORT || 2071;
+const port = config.PORT || 3000;
 
-// Configuración de Sequelize (Base de datos)
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT || 3306,
-  dialect: 'mysql',
-  logging: false, // Para evitar mostrar los logs de SQL
-  pool: {
-      max: 5,
-      min: 0,
-      acquire: 30000,
-      idle: 10000,
-  },
+// Configuración de la base de datos
+const db = mysql.createConnection({
+  host: config.DB_HOST,
+  user: config.DB_USER,
+  password: config.DB_PASSWORD,
+  database: config.DB_NAME,
+  port: config.DB_PORT
 });
 
 db.connect((err) => {
@@ -180,9 +176,6 @@ const authenticateToken = (req, res, next) => {
     next();
   });
 };
-
-
-
 
 // ===============================================================
 // Componente Obtener usuarios

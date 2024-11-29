@@ -96,7 +96,6 @@ function EditInventory() {
         setErrorMessage(''); // Limpiar mensaje de error
         setSuccessMessage(''); // Limpiar mensaje de éxito
     };
-
     return (
         <div className="edit-profile-page">
             <Sidebar />
@@ -106,12 +105,14 @@ function EditInventory() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
             >
+            <button onClick={() => navigate('/Inventory')}>Volver</button>      
                 <motion.h1
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                     style={{ fontSize: '2.5rem', color: '#007bff', fontWeight: 'bold', textShadow: '1px 1px 4px rgba(0, 0, 0, 0.3)' }}
                 >
+                    
                     Editar Inventario
                 </motion.h1>
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
@@ -122,6 +123,7 @@ function EditInventory() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
                 >
+                    
                     <div className="form-row">
                         <div className="form-group">
                             <label>Nombre</label>

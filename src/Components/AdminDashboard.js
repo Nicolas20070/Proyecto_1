@@ -106,6 +106,7 @@ const AdminDashboard = () => {
   return (
     <div className="dashboard-container">
       <div className="content">
+        
         <FloatingMenu />
         <motion.div 
           id="home" 

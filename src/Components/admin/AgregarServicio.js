@@ -49,6 +49,7 @@ function AgregarServicio() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
             >
+            <button onClick={() => navigate('/Servicios')}>Volver</button>      
                 <h2>Agregar Servicio</h2>
                 <motion.form
                     onSubmit={handleSubmit}

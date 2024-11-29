@@ -144,6 +144,7 @@ function EditProfileUser() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
             >
+                <button onClick={() => navigate('/Usuarios')}>Volver</button>      
                 <motion.h2
                     className="usuarios-title"
                     initial={{ opacity: 0, y: -20 }}

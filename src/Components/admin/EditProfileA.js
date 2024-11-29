@@ -137,6 +137,7 @@ const EditProfileA = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
             >
+            <button onClick={() => navigate('/ProfileA')}>Volver</button>      
                 <motion.h1
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}

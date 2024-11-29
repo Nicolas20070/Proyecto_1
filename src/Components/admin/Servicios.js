@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Sidebar from './Slidebara';
+import { FaPencilAlt } from 'react-icons/fa';
 import DataTable from 'react-data-table-component';
-import '../styles/Servicios.css'; // Asegúrate de tener un archivo CSS para los estilos
+import '../styles/Usuarios.css'; // Asegúrate de tener un archivo CSS para los estilos
 
 function Servicios() {
   const [servicios, setServicios] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
+
+
+  const handleEditProfile = (userId) => {
+    navigate(`/update-servicio/:id${userId}`);
+  };
 
   useEffect(() => {
     const fetchServicios = async () => {
@@ -86,7 +94,7 @@ function Servicios() {
       name: 'Descripción',
       selector: row => row.descripcion,
       wrap: true,
-      width: '500px',
+      width: '300px',
       cell: row => <div style={{ padding: '10px', textAlign: 'left' }}>{row.descripcion}</div>,
     },
     {
@@ -97,11 +105,24 @@ function Servicios() {
       width: '200px',
       cell: row => <div style={{ padding: '10px', textAlign: 'right' }}>{row.costo}</div>,
     },
+    {
+      name: '',
+      cell: row => (
+        <button onClick={() => handleEditProfile(row.id)} className="edit-button">
+          <FaPencilAlt />
+        </button>
+      ),
+      ignoreRowClick: true,
+      allowOverflow: true,
+      button: true,
+      width: '150px',
+    },
   ];
 
   return (
-    <div className="servicios-content">
-      <Sidebar />
+    <div className="usuarios-container">
+            <Sidebar />
+    <div className="usuarios-content">
       <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -120,7 +141,7 @@ function Servicios() {
           className="search-input"
           style={{ marginRight: '10px', padding: '10px', borderRadius: '4px', border: '1px solid #ccc', flexGrow: 1 }}
         />
-        <Link to="/agregar-servicio" className="agregar-ser">Agregar</Link>
+        <Link to="/agregar-servicio" className="agregar-ser">✚</Link>
         
       </div>
       <DataTable
@@ -168,6 +189,7 @@ function Servicios() {
           selectAllRowsItemText: 'Todos',
         }}
       />
+    </div>
     </div>
   );
 }

@@ -1,0 +1,28 @@
+/* DiagonalBands.css */
+
+.diagonal-bands-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.diagonal-band {
+    position: absolute;
+    width: 200%;
+    height: 30%;
+    transform: rotate(-45deg);
+    opacity: 0.8;
+    animation: none; /* Remove animation after reaching final position */
+}
+
+.red-band {
+    background-color: red;
+}
+
+.white-band {
+    background-color: white;
+} 

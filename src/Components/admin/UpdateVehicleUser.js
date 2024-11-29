@@ -113,6 +113,7 @@ function UpdateVehicleUser () {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
             >
+                <button onClick={() => navigate('/Vehiculos')}>Volver</button>      
                 <motion.h2
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}

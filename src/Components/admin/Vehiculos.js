@@ -119,16 +119,17 @@ function Vehiculos() {
     ];
 
     return (
-        <div className="vehiculos-content">
+        <div className="usuarios-container">
             <Sidebar />
-            <motion.div
+            <div className="usuarios-content">
+            <motion.h2
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="vehiculos-header"
+                className="usuarios-title"
             >
-                <h2>Información de Vehículos</h2>
-            </motion.div>
+              Información de Vehículos
+            </motion.h2>
             <motion.input
                 type="text"
                 placeholder="Buscar..."
@@ -139,12 +140,6 @@ function Vehiculos() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
             />
-            <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="vehiculos-table-wrapper"
-            >
                 <DataTable
                     columns={columns}
                     data={filteredVehicles}
@@ -189,7 +184,7 @@ function Vehiculos() {
                         selectAllRowsItemText: 'Todos',
                     }}
                 />
-            </motion.div>
+         </div>
         </div>
     );
 }

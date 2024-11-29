@@ -46,7 +46,8 @@ function AddInventory() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-            >
+            >            
+            <button onClick={() => navigate('/Inventory')}>Volver</button>      
                 <h2>Agregar Inventario</h2>
                 <motion.form
                     onSubmit={handleSubmit}
