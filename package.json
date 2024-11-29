@@ -14,7 +14,7 @@
     "cors": "^2.8.5",
     "crypto-browserify": "^3.12.0",
     "dotenv": "^16.4.5",
-    "express": "^4.21.0",
+    "express": "^4.21.1",
     "framer-motion": "^11.11.10",
     "frontend": "file:",
     "install": "^0.13.0",
@@ -73,6 +73,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "eslint": "^8.57.1"
   }
 }
