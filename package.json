@@ -52,7 +52,7 @@
       "react-app/jest"
     ],
     "rules": {
-      "no-unused-vars": "off"  // Desactiva la regla de variables no usadas
+      "no-unused-vars": "off"
     }
   },
   "browserslist": {
