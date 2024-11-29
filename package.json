@@ -67,7 +67,7 @@
       "last 1 safari version"
     ]
   },
-  "description": "![Logo de LA Servitk](./src/Components/Assets/servilogo.png)",
+  "description": "Logo de LA Servitk",
   "main": "craco.config.js",
   "keywords": [],
   "author": "",
