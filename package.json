@@ -50,7 +50,10 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "no-unused-vars": "off"  // Desactiva la regla de variables no usadas
+    }
   },
   "browserslist": {
     "production": [
@@ -68,5 +71,8 @@
   "main": "craco.config.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.57.1"
+  }
 }
